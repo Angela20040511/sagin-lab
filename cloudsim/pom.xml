@@ -24,7 +24,7 @@
     </properties>
 
     <dependencies>
-        <!-- CloudSim Plus 7.x -->
+        <!-- CloudSim Plus 8.x -->
         <dependency>
             <groupId>org.cloudsimplus</groupId>
             <artifactId>cloudsim-plus</artifactId>
@@ -41,6 +41,14 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!-- CloudSim Plus 主包 -->
+        <dependency>
+            <groupId>org.cloudsimplus</groupId>
+            <artifactId>cloudsim-plus</artifactId>
+            <version>8.0.0</version>
+        </dependency>
+
 
         <!-- JSON I/O -->
         <dependency>

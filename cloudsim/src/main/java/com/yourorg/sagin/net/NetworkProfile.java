@@ -11,6 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public abstract class NetworkProfile {
 
+    public abstract void put(int u, int v, double tStart, LinkMetrics m);
+
     public abstract LinkMetrics link(int u, int v, double t);
 
     /** 键：src->dst */
