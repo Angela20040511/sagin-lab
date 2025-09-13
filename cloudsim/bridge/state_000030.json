@@ -1,0 +1,51 @@
+{
+  "k" : 30,
+  "time" : 30.5014,
+  "vms" : [ {
+    "id" : 101,
+    "mips" : 5000.0,
+    "pes" : 2,
+    "ram" : 4096,
+    "bw" : 500000,
+    "size" : 10000
+  }, {
+    "id" : 201,
+    "mips" : 5000.0,
+    "pes" : 1,
+    "ram" : 4096,
+    "bw" : 500000,
+    "size" : 10000
+  } ],
+  "cloudlets" : [ {
+    "id" : 1,
+    "len" : 51130,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 2,
+    "len" : 26918,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 3,
+    "len" : 24476,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 4,
+    "len" : 47863,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 5,
+    "len" : 57387,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 6,
+    "len" : 57727,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  } ],
+  "link_patch_example" : [ ]
+}

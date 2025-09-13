@@ -1,0 +1,76 @@
+{
+  "k" : 922337214,
+  "time" : 9.223372145517E8,
+  "vms" : [ {
+    "id" : 101,
+    "mips" : 10000.0,
+    "pes" : 2,
+    "ram" : 64000,
+    "bw" : 500000,
+    "size" : 10000
+  }, {
+    "id" : 201,
+    "mips" : 10000.0,
+    "pes" : 1,
+    "ram" : 64000,
+    "bw" : 500000,
+    "size" : 10000
+  } ],
+  "cloudlets" : [ {
+    "id" : 1,
+    "len" : 51130,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 2,
+    "len" : 28884,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 3,
+    "len" : 41505,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 4,
+    "len" : 28093,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 5,
+    "len" : 55276,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 6,
+    "len" : 58032,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 7,
+    "len" : 48743,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 8,
+    "len" : 27863,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 9,
+    "len" : 21243,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 10,
+    "len" : 47458,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 11,
+    "len" : 26730,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  } ],
+  "link_patch_example" : [ ]
+}

@@ -1,0 +1,31 @@
+# --- Java/Maven/Gradle ---
+target/
+*.iml
+.idea/
+.classpath
+.project
+.settings/
+.mvn/wrapper/maven-wrapper.jar
+
+# --- VSCode / IntelliJ ---
+.vscode/
+*.iws
+out/
+
+# --- Python ---
+python-sthgnn/.venv/
+python-sthgnn/venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- 运行时产物 / 大量中间数据 ---
+bridge/**/*.json
+logs/
+experiments/**/results/
+**/*.log
+
+# --- OS 杂项 ---
+.DS_Store
+Thumbs.db

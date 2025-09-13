@@ -1,0 +1,116 @@
+{
+  "k" : 61,
+  "time" : 61.2328,
+  "vms" : [ {
+    "id" : 101,
+    "mips" : 5000.0,
+    "pes" : 2,
+    "ram" : 4096,
+    "bw" : 500000,
+    "size" : 10000
+  }, {
+    "id" : 201,
+    "mips" : 5000.0,
+    "pes" : 1,
+    "ram" : 4096,
+    "bw" : 500000,
+    "size" : 10000
+  } ],
+  "cloudlets" : [ {
+    "id" : 1,
+    "len" : 51130,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 2,
+    "len" : 28884,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 3,
+    "len" : 41505,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 4,
+    "len" : 28093,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 5,
+    "len" : 55276,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 6,
+    "len" : 58032,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 7,
+    "len" : 48743,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 8,
+    "len" : 27863,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 9,
+    "len" : 21243,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 10,
+    "len" : 47458,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 11,
+    "len" : 56730,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 12,
+    "len" : 51085,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 13,
+    "len" : 25212,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 14,
+    "len" : 41164,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 15,
+    "len" : 29823,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 16,
+    "len" : 20534,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 17,
+    "len" : 50157,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 18,
+    "len" : 44440,
+    "vm" : 201,
+    "phase" : "RUNNING"
+  }, {
+    "id" : 19,
+    "len" : 27160,
+    "vm" : 101,
+    "phase" : "RUNNING"
+  } ],
+  "link_patch_example" : [ ]
+}

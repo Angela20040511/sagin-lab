@@ -1,0 +1,86 @@
+sagin-lab/                             ← 顶层 git 仓库
+├─ cloudsim/                           ← CloudSim（Java）
+│  ├─ pom.xml / build.gradle
+│  └─ src/main/java/com/yourorg/sagin/
+│     ├─ broker/
+│     │  └─ STHGNNBroker.java         ← 自定义 Broker：定时产出 state、读取 action 并绑定任务
+│     ├─ net/
+│     │  ├─ NetworkProfile.java       ← 动态网络接口（按时刻返回 rtt/bw/loss）
+│     │  ├─ TrajectoryLoader.java     ← 可选：加载 Celestial/Hypatia 导出的轨迹
+│     │  └─ LinkMetrics.java          ← rtt/bw/loss 数据结构
+│     ├─ io/
+│     │  ├─ StateWriter.java          ← 写 bridge/state_{k}.json（原子写 tmp→rename）
+│     │  └─ ActionReader.java         ← 读 bridge/action_{k}.json（超时回退）
+│     ├─ model/
+│     │  ├─ SAGNode.java              ← 卫星/地面/边缘统一节点对象（算力、队列、能耗、缓存命中率…）
+│     │  └─ TaskView.java             ← Cloudlet 轻量视图（上/下行大小、算力需求、deadline…）
+│     ├─ sched/
+│     │  └─ CloudletSchedulerX.java   ← 可选：把 T_up/T_down 纳入调度估时
+│     └─ MainRun.java                 ← 入口（建模、注册 Broker、启动仿真）
+│  └─ src/main/resources/
+│     ├─ mapping.yaml                 ← 节点ID映射（Java↔Python一致）
+│     └─ network_profile.csv/json     ← 若用离线轨迹，这里放
+│
+├─ python-sthgnn/                      ← ST-HGNN + 注意力 + LSTM + PPO（Python）
+│  ├─ requirements.txt
+│  └─ src/satellite_offloading/
+│     ├─ __init__.py
+│     ├─ models/
+│     │  ├─ hypergraph.py             ← 超图构建/更新（H 矩阵或稀疏列表）
+│     │  ├─ attention.py              ← 注意力聚合模块（超边/节点双注意力）
+│     │  ├─ st_hgnn.py                ← ST-HGNN 主模型（空间聚合 + 残差/归一化）
+│     │  └─ lstm_encoder.py           ← 每节点时序编码（LSTM/GRU）
+│     ├─ rl/
+│     │  ├─ ppo_agent.py              ← PPO 智能体（策略/价值、采样/更新）
+│     │  ├─ buffer.py                 ← 经验回放/GAE
+│     │  └─ distributed.py            ← 可选：多进程训练
+│     ├─ environment/
+│     │  ├─ satellite_env.py          ← 将 state.json 解析为张量、做归一化与特征拼接
+│     │  ├─ task_generator.py         ← 本地自测用（无 CloudSim 时伪造任务）
+│     │  └─ communication.py          ← 监听 bridge/ 文件并写回 action.json
+│     ├─ io/
+│     │  ├─ reader.py                 ← 读 state_{k}.json
+│     │  └─ writer.py                 ← 写 action_{k}.json（原子写）
+│     ├─ utils/
+│     │  ├─ topology.py               ← 节点/超边拓扑工具、可达集计算
+│     │  ├─ metrics.py                ← 指标计算（P50/P95、能耗等）
+│     │  └─ logging.py                ← 日志/计时/文件锁
+│     ├─ configs/
+│     │  └─ default.yaml              ← 训练/推理超参、桥接路径、超图参数
+│     ├─ run_infer.py                 ← 常驻推理进程：watch state → 出 action（论文推理用）
+│     └─ run_train.py                 ← 训练脚本（需要回放或本地环境）
+│
+├─ bridge/                              ← Java↔Python 的“交换目录”
+│  ├─ state_000001.json
+│  ├─ action_000001.json
+│  └─ tmp/                              ← 原子写临时文件
+│
+├─ configs/
+│  ├─ protocol.schema.json              ← JSON 模式校验（可选，避免字段错漏）
+│  └─ paths.yaml                        ← 统一配置：bridge 路径、tick(ms)、超时(ms)
+│
+├─ logs/
+│  ├─ cloudsim/
+│  └─ python/
+│
+├─ experiments/
+│  └─ exp1_dynamic_network/             ← 实验脚本与结果（便于复现）
+│
+└─ README.md
+
+分工：
+CloudSim（Java）
+事件时钟、任务到达与排队；
+VM/Host 计算与能耗核算；
+根据 NetworkProfile 计算上/下行传输时延 T_up/T_down；
+写 state_{k}.json（系统状态、任务列表、连通性/链路指标、可选超边成员）；
+读 action_{k}.json 并应用动作（把 Cloudlet 绑定到目标节点/VM；必要时设置模型切分点/并发度参数）；
+兜底策略（超时未返回 action 时）：贪心/上次策略/本地执行。
+
+Python（ST-HGNN + PPO）
+从 state_{k}.json 构建/更新超图（多对多关系，一颗星连接多个节点/地面站）；
+注意力加速的超图聚合，得到每节点的空间上下文；
+将“节点自特征 ⊕ 空间上下文”作为序列送入 LSTM 得到时序嵌入；
+PPO 根据节点嵌入 + 任务属性出动作（目标节点、切分点、并发度、路由偏好…）；
+写 action_{k}.json 返回给 CloudSim；
+训练/评估与日志记录。
