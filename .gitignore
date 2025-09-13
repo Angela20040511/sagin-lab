@@ -45,3 +45,7 @@ Thumbs.db
 # --- 其它常见文件 ---
 .env
 .cache/
+
+# user-local maven toolchains dump
+%USERPROFILE%.m2toolchains.xml
+
