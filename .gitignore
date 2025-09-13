@@ -1,31 +1,47 @@
-# --- Java/Maven/Gradle ---
+# --- Java / Maven / Gradle ---
 target/
 *.iml
-.idea/
 .classpath
 .project
 .settings/
+.gradle/
+# IntelliJ
+.idea/
+# VS Code
+.vscode/
+# Maven wrapper（如果你决定把 .mvn/wrapper 和 mvnw 提交，就删掉下面这行）
 .mvn/wrapper/maven-wrapper.jar
 
-# --- VSCode / IntelliJ ---
-.vscode/
-*.iws
-out/
-
 # --- Python ---
-python-sthgnn/.venv/
+# 虚拟环境
+venv/
+.venv/
 python-sthgnn/venv/
+python-sthgnn/.venv/
+# 编译缓存
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ipynb_checkpoints/
 
 # --- 运行时产物 / 大量中间数据 ---
+# 交换目录里的 state_*.json / action_*.json 体积可能暴涨
 bridge/**/*.json
 logs/
 experiments/**/results/
 **/*.log
 
+# 如果你希望把空目录纳入版本控制，放一个 .gitkeep（.gitkeep 不忽略）
+!.gitkeep
+
 # --- OS 杂项 ---
 .DS_Store
 Thumbs.db
+
+# --- 其它常见文件 ---
+.env
+.cache/

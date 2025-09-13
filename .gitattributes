@@ -1,3 +1,17 @@
+# 统一文本换行
+* text=auto
+
+# 常见脚本/配置统一 LF
+*.sh  text eol=lf
+*.py  text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Windows 批处理保留 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# ---- Git LFS 跟踪的大文件类型 ----
 *.csv filter=lfs diff=lfs merge=lfs -text
 *.pt  filter=lfs diff=lfs merge=lfs -text
 *.pth filter=lfs diff=lfs merge=lfs -text
